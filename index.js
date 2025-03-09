@@ -38,11 +38,13 @@ app.post('/infoUsuario', (req, res) => {
 
 //me conecto a la BBDD
 const pool = new Pool({
-    host: 'localhost',
+  //con 'process.env' invoco a la variable de entorno, sino existe, almaceno 'localhost'
+  // Definire la variable de entorno, recien en fase de produccion. (ej : en render.com) 
+    host: process.env.URL_BASE_DE_DATOS || 'localhost',  
     port: 5432,
     database: 'primer_programa_db',
-    user: 'postgres',
-    password: 'camusoft'
+    user: process.env.USUARIO || 'postgres',
+    password: process.env.PASS || 'camusoft',
 })
 
 
